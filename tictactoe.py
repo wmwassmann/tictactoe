@@ -3,11 +3,6 @@ tic = 'X'
 tac = 'O'
 
 
-
-
-
-
-
 board = [' ', ' ', ' ', ' ', ' ', ' ',  ' ', ' ', ' ']
 
 
@@ -21,47 +16,25 @@ def printBoard():
 
 
 def setPiece(play, pos):
-    board.insert(int(pos), str(play))      
+    board[(int(pos))] = str(play)
     printBoard()
-# def setPieceTwo(play): 
-#     pieceOneB = play
-#     printBoard(pieceOneB)
+
+
+
+
+
+def setPieceTwo(play, pos):
+    board[(int(pos))] = str(play)     
+    printBoard()
+
+
+
+
+def setPieceThree(play, pos):
+    board[(int(pos))] = str(play) 
+    printBoard()
 
 
 setPiece(tic, 2)
-# setPieceTwo(tac)
-
-
-# class Board: 
-#     def _init_(self, pieceOneA, pieceOneB, pieceOneC, pieceTwoA, pieceTwoB, pieceTwoC, pieceThreeA, pieceThreeB, pieceThreeC):
-#         self.pieceOneA = pieceOneA
-#         self.pieceOneB = pieceOneB
-#         self.pieceOneC = pieceOneC
-#         self.pieceTwoA = pieceTwoA
-#         self.pieceTwoB = pieceTwoB
-#         self.pieceTwoC = pieceTwoC
-#         self.pieceThreeA = pieceThreeA
-#         self.pieceThreeB = pieceThreeB
-#         self.pieceThreeC = pieceThreeC
-
-
-
-# def printBoard(pieceOneA, pieceOneB, pieceOneC, pieceTwoA, pieceTwoB, pieceTwoC, pieceThreeA, pieceThreeB, pieceThreeC):
-#     print('  ' + pieceOneA + '  |   ' + pieceOneB + '  |  '  + pieceOneC + '  ')
-#     print('------------------')
-#     print('  ' + pieceTwoA + '  |   ' + pieceTwoB + '  |  '  + pieceTwoC + '  ')
-#     print('------------------')
-#     print('  ' + pieceThreeA + '  |   ' + pieceThreeB + '  |  '  + pieceThreeC + '  ')
-
-
-    # class Board: 
-#     def _init_(self, pieceOneA, pieceOneB, pieceOneC, pieceTwoA, pieceTwoB, pieceTwoC, pieceThreeA, pieceThreeB, pieceThreeC):
-#         self.pieceOneA = pieceOneA
-#         self.pieceOneB = pieceOneB
-#         self.pieceOneC = pieceOneC
-#         self.pieceTwoA = pieceTwoA
-#         self.pieceTwoB = pieceTwoB
-#         self.pieceTwoC = pieceTwoC
-#         self.pieceThreeA = pieceThreeA
-#         self.pieceThreeB = pieceThreeB
-#         self.pieceThreeC = pieceThreeC
+setPieceTwo(tac, 1)
+setPieceThree(tic, 0)

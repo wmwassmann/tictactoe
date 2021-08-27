@@ -86,12 +86,12 @@ def singleplayerGame():
             setPiece(tac, int(2))
         else:
             setPiece(tac, int(8))
-    elif (board[0] == 'O'):
+    if (board[0] == 'O'):
         if board[6] == '-': 
             setPiece(tac, int(6))
         else:
             setPiece(tac, int(4))
-    elif (board[2] == 'O'):
+    if (board[2] == 'O'):
         if board[0] == '-': 
             setPiece(tac, int(0))
         else:
@@ -104,49 +104,41 @@ def singleplayerGame():
 
     # PICK UP HERE
 
+
     if (board[2] == 'O'):
         if board[4] == '-': 
             setPiece(tac, int(4))
         else:
             setPiece(tac, int(8))
-    elif (board[6] == 'O'):
+
+    if (board[6] == 'O'):
         if board[8] == '-': 
             setPiece(tac, int(8))
-        if board[4] == '-':  
-            setPiece(tac, int(4))
         else: 
             setPiece(tac, int(7))
-    elif (board[3] == 'O'):
-        if board[5] == '-': 
-            setPiece(tac, int(5))
-        else:
-            setPiece(tac, int(8))
 
-
-
-    selectPositionSeven = input('Player X, select an empty position: ')
-    setPiece(tac, int(selectPositionSeven))
-  
-    # Set Position Eight
-
-    # if (board[8] == 'O'):
-    #     if board[4] == '-': 
-    #         setPiece(tac, int(4))
-    #     else:
-    #         setPiece(tac, int(7))
-    # elif (board[6] == 'O'):
-    #     if board[8] == '-': 
-    #         setPiece(tac, int(8))
-    #     else:
-    #         setPiece(tac, int(4))
-    # elif (board[3] == 'O'):
+    # if (board[3] == 'O'):
     #     if board[5] == '-': 
     #         setPiece(tac, int(5))
     #     else:
     #         setPiece(tac, int(8))
 
+
+
+    selectPositionSeven = input('Player X, select an empty position: ')
+    setPiece(tic, int(selectPositionSeven))
+  
+    # Set Position Eight
+
+    if (board[8] == 'O'):
+        if board[4] == '-': 
+            setPiece(tac, int(4))
+        else:
+            setPiece(tac, int(7))
+
+
     selectPositionNine = input('Player X, select an empty position: ')
-    setPiece(tac, int(selectPositionNine))
+    setPiece(tic, int(selectPositionNine))
 
 
 # Tic-Tac-Toe functional board to be called at will.

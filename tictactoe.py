@@ -11,11 +11,10 @@ board = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
 def setPiece(play, pos):
     if board[pos] != '-':
         print('Please select a different space')
-        game()
+        multiplayerGame()
         return
     else:
         board[(int(pos))] = str(play)
-        # print(board)
         printBoard()
 
     if ((board[0] == 'X') and (board[1] == 'X') and (board[2] == 'X') or
@@ -41,11 +40,9 @@ def setPiece(play, pos):
 
 
 # These functions alternate players. It's sloppy, but it gets the job done.  To be reworked as I learn more about Python.
-def game():
-    
-
-    selectPositionOne = input('Player X, select an empty position: ')
-    
+def multiplayerGame():  
+    printBoard()
+    selectPositionOne = input('Player X, select an empty position: ')    
     setPiece(tic, int(selectPositionOne))
     selectPositionTwo = input('Player O, select an empty position: ')
     setPiece(tac, int(selectPositionTwo))
@@ -61,6 +58,93 @@ def game():
     setPiece(tac, int(selectPositionSeven))
     selectPositionEight = input('Player O, select an empty position: ')
     setPiece(tic, int(selectPositionEight))
+    selectPositionNine = input('Player X, select an empty position: ')
+    setPiece(tac, int(selectPositionNine))
+
+def singleplayerGame(): 
+    printBoard()
+
+    selectPositionOne = input('Player X, select an empty position: ')    
+    setPiece(tic, int(selectPositionOne)) 
+
+    # Set Position Two
+
+    if (board[0] == 'X') or (board[1] == 'X') or (board[2] == 'X'):
+        setPiece(tac, int(6))
+    elif (board[3] == 'X') or (board[4] == 'X') or (board[5] == 'X'):
+        setPiece(tac, int(0))
+    elif (board[6] == 'X') or (board[7] == 'X') or (board[8] == 'X'):
+        setPiece(tac, int(2))
+
+    selectPositionThree = input('Player X, select an empty position: ')
+    setPiece(tic, int(selectPositionThree))  
+
+    # Set Position Four
+
+    if (board[6] == 'O'):
+        if board[2] == '-': 
+            setPiece(tac, int(2))
+        else:
+            setPiece(tac, int(8))
+    elif (board[0] == 'O'):
+        if board[6] == '-': 
+            setPiece(tac, int(6))
+        else:
+            setPiece(tac, int(4))
+    elif (board[2] == 'O'):
+        if board[0] == '-': 
+            setPiece(tac, int(0))
+        else:
+            setPiece(tac, int(4))
+
+    selectPositionFive = input('Player X, select an empty position: ')
+    setPiece(tic, int(selectPositionFive))
+
+    # Set Position Six
+
+    # PICK UP HERE
+
+    if (board[2] == 'O'):
+        if board[4] == '-': 
+            setPiece(tac, int(4))
+        else:
+            setPiece(tac, int(8))
+    elif (board[6] == 'O'):
+        if board[8] == '-': 
+            setPiece(tac, int(8))
+        if board[4] == '-':  
+            setPiece(tac, int(4))
+        else: 
+            setPiece(tac, int(7))
+    elif (board[3] == 'O'):
+        if board[5] == '-': 
+            setPiece(tac, int(5))
+        else:
+            setPiece(tac, int(8))
+
+
+
+    selectPositionSeven = input('Player X, select an empty position: ')
+    setPiece(tac, int(selectPositionSeven))
+  
+    # Set Position Eight
+
+    # if (board[8] == 'O'):
+    #     if board[4] == '-': 
+    #         setPiece(tac, int(4))
+    #     else:
+    #         setPiece(tac, int(7))
+    # elif (board[6] == 'O'):
+    #     if board[8] == '-': 
+    #         setPiece(tac, int(8))
+    #     else:
+    #         setPiece(tac, int(4))
+    # elif (board[3] == 'O'):
+    #     if board[5] == '-': 
+    #         setPiece(tac, int(5))
+    #     else:
+    #         setPiece(tac, int(8))
+
     selectPositionNine = input('Player X, select an empty position: ')
     setPiece(tac, int(selectPositionNine))
 
@@ -85,7 +169,9 @@ def startUp():
     intro = input('Welcome to Tic Tac Toe! How many players: ')
     if intro == '2':
         printBoard()
-        game()
+        multiplayerGame()
+    else:
+        singleplayerGame()
         
 
 startUp()

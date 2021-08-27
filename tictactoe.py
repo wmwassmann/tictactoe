@@ -16,6 +16,7 @@ def setPiece(play, pos):
     else:
         board[(int(pos))] = str(play)
         printBoard()
+        
 
     if ((board[0] == 'X') and (board[1] == 'X') and (board[2] == 'X') or
         (board[0] == 'X') and (board[3] == 'X') and (board[6] == 'X') or
@@ -61,6 +62,9 @@ def multiplayerGame():
     selectPositionNine = input('Player X, select an empty position: ')
     setPiece(tac, int(selectPositionNine))
 
+
+# Very simple AI computer opponent, not quite complete.
+
 def singleplayerGame(): 
     printBoard()
 
@@ -71,8 +75,12 @@ def singleplayerGame():
 
     if (board[0] == 'X') or (board[1] == 'X') or (board[2] == 'X'):
         setPiece(tac, int(6))
+
+
     elif (board[3] == 'X') or (board[4] == 'X') or (board[5] == 'X'):
         setPiece(tac, int(0))
+
+
     elif (board[6] == 'X') or (board[7] == 'X') or (board[8] == 'X'):
         setPiece(tac, int(2))
 
@@ -84,19 +92,27 @@ def singleplayerGame():
     if (board[6] == 'O'):
         if board[2] == '-': 
             setPiece(tac, int(2))
-        else:
+        elif board[8] == '-': 
             setPiece(tac, int(8))
-    if (board[0] == 'O'):
+        else:
+            setPiece(tac, int(0))
+
+
+    elif (board[0] == 'O'):
         if board[6] == '-': 
             setPiece(tac, int(6))
-        else:
+        elif board[4] == '-': 
             setPiece(tac, int(4))
-    if (board[2] == 'O'):
+        else:
+            setPiece(tac, int(0))
+
+    elif (board[2] == 'O'):
         if board[0] == '-': 
             setPiece(tac, int(0))
-        else:
+        elif board[4] == '-': 
             setPiece(tac, int(4))
-
+        else: 
+            setPiece(tac, int(1))
     selectPositionFive = input('Player X, select an empty position: ')
     setPiece(tic, int(selectPositionFive))
 
@@ -108,22 +124,16 @@ def singleplayerGame():
     if (board[2] == 'O'):
         if board[4] == '-': 
             setPiece(tac, int(4))
-        else:
+        elif board[8] == '-': 
             setPiece(tac, int(8))
+        else:
+            setPiece(tac, int(0))
 
-    if (board[6] == 'O'):
+    elif (board[6] == 'O'):
         if board[8] == '-': 
             setPiece(tac, int(8))
         else: 
             setPiece(tac, int(7))
-
-    # if (board[3] == 'O'):
-    #     if board[5] == '-': 
-    #         setPiece(tac, int(5))
-    #     else:
-    #         setPiece(tac, int(8))
-
-
 
     selectPositionSeven = input('Player X, select an empty position: ')
     setPiece(tic, int(selectPositionSeven))
@@ -167,10 +177,6 @@ def startUp():
         
 
 startUp()
-
-
-
-
 
 
 

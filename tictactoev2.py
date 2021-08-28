@@ -25,8 +25,17 @@ def printBoard(board):
 printBoard(newBoard)
 
 
-def twoPlayerGame():
-    input('Player X, please select a position:')
+def twoPlayerGame(board):
+    # I want to loop through something to only have a single input.  I think a while loop will work as I don't know how long the game will last.
+    # Issue falls in when I don't know which player is up.  May need two while loops.
+    board = [
+    ['---', '---', '---'], 
+    ['---', '---', '---'],
+    ['---', '---', '---']
+]
+
+    while board:
+        input('Player X, please select a position:')
     
 
 
@@ -40,7 +49,7 @@ def startGame():
     intro = input('Welcome to Tic Tac Toe! How many players: ')
     if intro == '2':
         printBoard(newBoard)
-        twoPlayerGame()
+        twoPlayerGame(newBoard)
     # else:
     #     singleplayerGame()
         

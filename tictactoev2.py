@@ -1,30 +1,51 @@
 # Global startp variables
+
+
+
 tic = 'X'
 tac = 'O'
 
 positions = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 newBoard = [
-    ['-', '-', '-'], 
-    ['-', '-', '-'],
-    ['-', '-', '-']
+    ['---', '---', '---'], 
+    ['---', '---', '---'],
+    ['---', '---', '---']
 ]
 
-for i in positions:
-    print(i)
 
-def printBoard(board, i):
+
+def printBoard(board):
     for row in board:
         for pos in row:
-            print(pos + ' ', end=f'{i}')
+            print(pos + ' ', end='')
         print()
    
 
-printBoard(newBoard, i)
+printBoard(newBoard)
+
+
+def twoPlayerGame():
+    input('Player X, please select a position:')
+    
 
 
 
 
+
+
+
+def startGame():
+
+    intro = input('Welcome to Tic Tac Toe! How many players: ')
+    if intro == '2':
+        printBoard(newBoard)
+        twoPlayerGame()
+    # else:
+    #     singleplayerGame()
+        
+
+startGame()
 
 
 

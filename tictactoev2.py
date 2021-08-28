@@ -34,9 +34,16 @@ def twoPlayerGame(board):
     ['---', '---', '---']
 ]
 
+    turn = 0
+
+
     while board:
-        input('Player X, please select a position:')
-    
+        turn = turn + 1
+        print(turn)
+        if (turn % 2) == 0: 
+           input('Player O, please select a position: ')
+        else:
+           input('Player X, please select a position: ')
 
 
 

@@ -27,17 +27,20 @@ printBoard(newBoard)
 # def setPiece(play, pos, board):   
 #     board[(int(pos))] = str(play)
 #     printBoard(board)
-def setPiece(coordinates, board, turn):   
+def setPiece(coordinates, board, turn, input):   
     row = coordinates[0]
     column = coordinates[1]
-    if (turn % 2) == 0: 
-        board[row][column] = '-o- '
-        printBoard(board)
-        print(turn)
-    else:
-       board[row][column] = '-x- '
-       printBoard(board)
-       print(turn) 
+    if board[input] != '--- ':
+        print('no!')
+    else: 
+        if (turn % 2) == 0: 
+            board[row][column] = '-o- '
+            printBoard(board)
+            print(turn)
+        else:
+            board[row][column] = '-x- '
+            printBoard(board)
+            print(turn)  
 
 def boardCoords(input):
     row = int(input / 3)
@@ -60,14 +63,14 @@ def twoPlayerGame(board):
            inputO = input('Player O, please select a position: ')     
            inputO = int(inputO) - 1   
            coordinates = boardCoords(inputO)
-           setPiece(coordinates, newBoard, turn)
+           setPiece(coordinates, newBoard, turn, int(inputO))
            
           
         else:
            inputX = input('Player X, please select a position: ')
            inputX = int(inputX) - 1
            coordinates = boardCoords(inputX)
-           setPiece(coordinates, newBoard, turn)
+           setPiece(coordinates, newBoard, turn, int(inputX))
           
         
 

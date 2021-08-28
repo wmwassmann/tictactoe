@@ -24,13 +24,20 @@ printBoard(newBoard)
 
 
 
-def setPiece(play, pos):   
-    newBoard[(int(pos))] = str(play)
-    printBoard(newBoard)
+# def setPiece(play, pos, board):   
+#     board[(int(pos))] = str(play)
+#     printBoard(board)
+def setPiece(coordinates, board):   
+    row = coordinates[0]
+    column = coordinates[1]
+    board[row][column] = '-x- '
+    printBoard(board)
 
 def boardCoords(input):
     row = int(input / 3)
-    print(row, 'row!!!')
+    column = input
+    if column > 2: column = int(column % 3)
+    return(row, column)
 
 
 def twoPlayerGame(board):
@@ -44,17 +51,18 @@ def twoPlayerGame(board):
         turn = turn + 1
         print(turn)
         if (turn % 2) == 0: 
-           inputO = input('Player O, please select a position: ')
-        #    if 
+           inputO = input('Player O, please select a position: ')     
            inputO = int(inputO) - 1   
-           setPiece(tac, int(inputO))
-           boardCoords(int(inputO))
+           coordinates = boardCoords(inputO)
+           setPiece(coordinates, newBoard)
+           
           
         else:
            inputX = input('Player X, please select a position: ')
            inputX = int(inputX) - 1
-           setPiece(tic, int(inputX))
-           boardCoords(int(inputX))
+           coordinates = boardCoords(inputX)
+           setPiece(coordinates, newBoard)
+          
         
 
 

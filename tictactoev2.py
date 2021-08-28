@@ -2,15 +2,15 @@
 
 
 
-tic = 'X'
-tac = 'O'
+tic = '-x- '
+tac = '-o- '
 
 positions = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 newBoard = [
-    ['---', '---', '---'], 
-    ['---', '---', '---'],
-    ['---', '---', '---']
+    ['--- ', '--- ', '--- '], 
+    ['--- ', '--- ', '--- '],
+    ['--- ', '--- ', '--- ']
 ]
 
 
@@ -18,7 +18,7 @@ newBoard = [
 def printBoard(board):
     for row in board:
         for pos in row:
-            print(pos + ' ', end='')
+            print(pos, end='')
         print()
 printBoard(newBoard)
 
@@ -29,7 +29,7 @@ def setPiece(play, pos):
     printBoard(newBoard)
 
 def boardCoords(input):
-    row = int(input/3)
+    row = int(input / 3)
     print(row, 'row!!!')
 
 

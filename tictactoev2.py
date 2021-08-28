@@ -20,10 +20,7 @@ def printBoard(board):
         for pos in row:
             print(pos + ' ', end='')
         print()
-   
-
 printBoard(newBoard)
-
 
 
 
@@ -31,15 +28,15 @@ def setPiece(play, pos):
     newBoard[(int(pos))] = str(play)
     printBoard(newBoard)
 
+def boardCoords(input):
+    row = int(input/3)
+    print(row, 'row!!!')
+
 
 def twoPlayerGame(board):
     # I want to loop through something to only have a single input.  I think a while loop will work as I don't know how long the game will last.
     # Issue falls in when I don't know which player is up.  May need two while loops.
-    board = [
-    ['---', '---', '---'], 
-    ['---', '---', '---'],
-    ['---', '---', '---']
-]
+
 
     turn = 0
 
@@ -48,11 +45,17 @@ def twoPlayerGame(board):
         print(turn)
         if (turn % 2) == 0: 
            inputO = input('Player O, please select a position: ')
+        #    if 
+           inputO = int(inputO) - 1   
            setPiece(tac, int(inputO))
-           
+           boardCoords(int(inputO))
+          
         else:
            inputX = input('Player X, please select a position: ')
+           inputX = int(inputX) - 1
            setPiece(tic, int(inputX))
+           boardCoords(int(inputX))
+        
 
 
 

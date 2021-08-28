@@ -56,11 +56,11 @@ def multiplayerGame():
     selectPositionSix = input('Player O, select an empty position: ')
     setPiece(tac, int(selectPositionSix))
     selectPositionSeven = input('Player X, select an empty position: ')
-    setPiece(tac, int(selectPositionSeven))
+    setPiece(tic, int(selectPositionSeven))
     selectPositionEight = input('Player O, select an empty position: ')
-    setPiece(tic, int(selectPositionEight))
+    setPiece(tac, int(selectPositionEight))
     selectPositionNine = input('Player X, select an empty position: ')
-    setPiece(tac, int(selectPositionNine))
+    setPiece(tic, int(selectPositionNine))
 
 
 # Very simple AI computer opponent, not quite complete.
@@ -168,6 +168,7 @@ def printBoard():
 
 
 def startUp():
+
     intro = input('Welcome to Tic Tac Toe! How many players: ')
     if intro == '2':
         printBoard()

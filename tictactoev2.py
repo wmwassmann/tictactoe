@@ -1,18 +1,26 @@
 # Global startp variables
 tic = 'X'
 tac = 'O'
+
+positions = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
 newBoard = [
     ['-', '-', '-'], 
     ['-', '-', '-'],
     ['-', '-', '-']
 ]
 
-def printBoard(board):
-    for row in board:
-        print(row)
-    
+for i in positions:
+    print(i)
 
-printBoard(newBoard)
+def printBoard(board, i):
+    for row in board:
+        for pos in row:
+            print(pos + ' ', end=f'{i}')
+        print()
+   
+
+printBoard(newBoard, i)
 
 
 

@@ -25,6 +25,13 @@ def printBoard(board):
 printBoard(newBoard)
 
 
+
+
+def setPiece(play, pos):   
+    newBoard[(int(pos))] = str(play)
+    printBoard(newBoard)
+
+
 def twoPlayerGame(board):
     # I want to loop through something to only have a single input.  I think a while loop will work as I don't know how long the game will last.
     # Issue falls in when I don't know which player is up.  May need two while loops.
@@ -36,15 +43,16 @@ def twoPlayerGame(board):
 
     turn = 0
 
-
     while board:
         turn = turn + 1
         print(turn)
         if (turn % 2) == 0: 
-           input('Player O, please select a position: ')
+           inputO = input('Player O, please select a position: ')
+           setPiece(tac, int(inputO))
+           
         else:
-           input('Player X, please select a position: ')
-
+           inputX = input('Player X, please select a position: ')
+           setPiece(tic, int(inputX))
 
 
 

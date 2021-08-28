@@ -27,20 +27,17 @@ printBoard(newBoard)
 # def setPiece(play, pos, board):   
 #     board[(int(pos))] = str(play)
 #     printBoard(board)
-def setPiece(coordinates, board, turn, input):   
+def setPiece(coordinates, board, turn):   
     row = coordinates[0]
-    column = coordinates[1]
-    if board[input] != '--- ':
-        print('no!')
-    else: 
-        if (turn % 2) == 0: 
-            board[row][column] = '-o- '
-            printBoard(board)
-            print(turn)
-        else:
-            board[row][column] = '-x- '
-            printBoard(board)
-            print(turn)  
+    column = coordinates[1]       
+    if (turn % 2) == 0: 
+        board[row][column] = '-o- '
+        printBoard(board)
+        print(turn)
+    else:
+       board[row][column] = '-x- '
+       printBoard(board)
+       print(turn) 
 
 def boardCoords(input):
     row = int(input / 3)
@@ -48,6 +45,15 @@ def boardCoords(input):
     if column > 2: column = int(column % 3)
     return(row, column)
 
+def checkSpace(coordinates, board):
+    row = coordinates[0]
+    column = coordinates[1] 
+    if board[row][column] == '--- ':
+       return False
+    else:
+        print('Please select a different position')
+        return True 
+         
 
 def twoPlayerGame(board):
     # I want to loop through something to only have a single input.  I think a while loop will work as I don't know how long the game will last.
@@ -57,22 +63,30 @@ def twoPlayerGame(board):
     turn = 0
 
     while board:
-        turn = turn + 1
+        
         
         if (turn % 2) == 0: 
            inputO = input('Player O, please select a position: ')     
            inputO = int(inputO) - 1   
            coordinates = boardCoords(inputO)
-           setPiece(coordinates, newBoard, turn, int(inputO))
+           if checkSpace(coordinates, newBoard):               
+               continue
+           else:
+               turn = turn + 1
+           setPiece(coordinates, newBoard, turn)
            
           
         else:
            inputX = input('Player X, please select a position: ')
            inputX = int(inputX) - 1
            coordinates = boardCoords(inputX)
-           setPiece(coordinates, newBoard, turn, int(inputX))
+           if checkSpace(coordinates, newBoard):
+               continue
+           else: 
+               turn = turn + 1
+           setPiece(coordinates, newBoard, turn)
+
           
-        
 
 
 

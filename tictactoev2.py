@@ -57,7 +57,9 @@ def checkValidSpace(input):
         print(f"'{input}' is not a valid input. Please enter a numeric value of 1-9")  
         return False
 
-# def winCondition():
+def winCondition(board):
+    return True
+
 
          
 
@@ -83,6 +85,9 @@ def twoPlayerGame(board):
               else:
                   turn = turn + 1
               setPiece(coordinates, newBoard, turn)
+           if winCondition(newBoard):
+              print('Win Condition')
+              break
                 
           
         else:
@@ -96,8 +101,9 @@ def twoPlayerGame(board):
                else: 
                    turn = turn + 1
                setPiece(coordinates, newBoard, turn)
-
-          
+           if winCondition(newBoard):
+              print('Win Condition')
+              break
 
 
 

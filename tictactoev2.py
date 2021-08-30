@@ -34,6 +34,17 @@ def setPiece(coordinates, board, turn):
        printBoard(board)
        print(turn) 
 
+def setComputerPiece(coordinates, board, turn):
+    row = coordinates[0]
+    column = coordinates[1]     
+      
+    board[row][column] = '-o- '
+        
+    printBoard(board)
+    print(turn)
+
+
+
 def boardCoords(input):
     row = int(input / 3)
     column = input
@@ -102,7 +113,43 @@ def columnWin(piece, board):
     return False
 
 
-         
+
+def singlePlayerGame(board):
+    print('single')  
+    turn = 0
+
+    while turn < 9:
+        # playerO = '-o- '
+        playerX = '-x- '
+        
+        if (turn % 2) == 0: 
+           inputX = input('Player X, please select a position: ')   
+          
+        #    checkValidSpace(inputO)
+           if checkValidSpace(inputX) == True:
+              inputX = int(inputX) - 1   
+              coordinates = boardCoords(inputX)
+              if checkSpace(coordinates, newBoard, inputX):               
+                  continue
+              else:
+                  turn = turn + 1
+              setPiece(coordinates, newBoard, turn)
+           if winCondition(playerX, newBoard):              
+              break                
+          
+        else:
+           inputO = '3'
+           inputO = int(inputO) - 1
+           checkValidSpace(inputO)
+           if checkValidSpace(inputO):
+               coordinates = boardCoords(inputO)
+               if checkSpace(coordinates, newBoard, inputO):
+                   continue
+               else: 
+                   turn = turn + 1               
+               setComputerPiece(coordinates, newBoard, turn)
+           if winCondition(coordinates, newBoard):              
+              break       
 
 def twoPlayerGame(board):
     # I want to loop through something to only have a single input.  I think a while loop will work as I don't know how long the game will last.
@@ -116,22 +163,6 @@ def twoPlayerGame(board):
         playerX = '-x- '
         
         if (turn % 2) == 0: 
-           inputO = input('Player O, please select a position: ')   
-          
-        #    checkValidSpace(inputO)
-           if checkValidSpace(inputO) == True:
-              inputO = int(inputO) - 1   
-              coordinates = boardCoords(inputO)
-              if checkSpace(coordinates, newBoard, inputO):               
-                  continue
-              else:
-                  turn = turn + 1
-              setPiece(coordinates, newBoard, turn)
-           if winCondition(playerX, newBoard):              
-              break
-                
-          
-        else:
            inputX = input('Player X, please select a position: ')
            inputX = int(inputX) - 1
            checkValidSpace(inputX)
@@ -142,6 +173,20 @@ def twoPlayerGame(board):
                else: 
                    turn = turn + 1
                setPiece(coordinates, newBoard, turn)
+           if winCondition(playerX, newBoard):              
+              break
+                
+          
+        else:
+           inputO = input('Player O, please select a position: ')   
+           inputO = int(inputO) - 1   
+           if checkValidSpace(inputO) == True:
+              coordinates = boardCoords(inputO)
+              if checkSpace(coordinates, newBoard, inputO):               
+                  continue
+              else:
+                  turn = turn + 1
+              setPiece(coordinates, newBoard, turn)
            if winCondition(playerO, newBoard):              
               break
 
@@ -156,8 +201,8 @@ def startGame():
     if intro == '2':
         printBoard(newBoard)
         twoPlayerGame(newBoard)
-    # else:
-    #     singleplayerGame()
+    else:
+        singlePlayerGame(newBoard)
         
 
 startGame()

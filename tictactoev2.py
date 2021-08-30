@@ -57,10 +57,23 @@ def checkValidSpace(input):
         print(f"'{input}' is not a valid input. Please enter a numeric value of 1-9")  
         return False
 
-def winCondition(board):
-    return True
+def winCondition(piece, board):
+    if rowWin(piece, board): 
+        print('Player ' + f'{piece}' + 'wins!' )
+        return True
+    return False
 
 
+def rowWin(piece, board):  
+    print(piece)  
+    for row in board:
+        rowWin = True
+        for pos in row:            
+            if pos != piece:
+                rowWin = False
+                break
+        if rowWin: return True
+    return False
          
 
 def twoPlayerGame(board):
@@ -71,7 +84,8 @@ def twoPlayerGame(board):
     turn = 0
 
     while turn < 9:
-        
+        playerO = '-o- '
+        playerX = '-x- '
         
         if (turn % 2) == 0: 
            inputO = input('Player O, please select a position: ')   
@@ -85,7 +99,7 @@ def twoPlayerGame(board):
               else:
                   turn = turn + 1
               setPiece(coordinates, newBoard, turn)
-           if winCondition(newBoard):
+           if winCondition(playerX, newBoard):
               print('Win Condition')
               break
                 
@@ -101,8 +115,7 @@ def twoPlayerGame(board):
                else: 
                    turn = turn + 1
                setPiece(coordinates, newBoard, turn)
-           if winCondition(newBoard):
-              print('Win Condition')
+           if winCondition(playerO, newBoard):              
               break
 
 

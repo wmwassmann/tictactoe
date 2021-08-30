@@ -87,7 +87,7 @@ def diagonalWin(piece, board):
     print(board[0][0])
     print(board[1][1])
     print(board[2][2])
-    if (board[0][0] == piece): 
+    if (board[0][0] == piece) and (board[1][1] == piece): 
         return True
     return False
 

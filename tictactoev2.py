@@ -38,6 +38,7 @@ def boardCoords(input):
     row = int(input / 3)
     column = input
     if column > 2: column = int(column % 3)
+    print(column, 'column')
     return(row, column)
 
 def checkSpace(coordinates, board, input):
@@ -92,8 +93,13 @@ def diagonalWin(piece, board):
     return False
 
 def columnWin(piece, board): 
-    if (board[0][0] == piece) and (board[0][1] == piece) and (board[0][2]):
+    if (board[0][0] == piece) and (board[1][0] == piece) and (board[2][0] == piece):        
         return True
+    elif (board[0][1] == piece) and (board[1][1] == piece) and (board[2][1] == piece):
+        return True
+    elif (board[0][2] == piece) and (board[1][2] == piece) and (board[2][2] == piece):
+        return True
+    return False
 
 
          

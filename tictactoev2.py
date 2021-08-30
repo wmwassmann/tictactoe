@@ -1,4 +1,5 @@
 # Global startp variables
+import random
 
 
 newBoard = [
@@ -32,19 +33,13 @@ def setPiece(coordinates, board, turn):
 
 
 def setComputerPiece(coordinates, board, turn):
-    print(turn, 'turn in set comp')
-    print(coordinates, 'Coords in comp')
     row = coordinates[0]
     column = coordinates[1]
-    # if turn == 1:
-    board[row][column] == '-o- '
+    board[row][column] = '-o- '
     printBoard(board)
-    # if turn == 2:
-    # board[row][column] == '-o- '
-    # printBoard(board)
 
 
-def boardCoords(input):
+def boardCoords(input):    
     row = int(input / 3)
     column = input
     if column > 2:
@@ -76,17 +71,30 @@ def checkValidSpace(input):
 def victoryCheer(piece):
     print('Player ' + f'{piece}' + 'wins!')
 
+def playAgain():
+    answer = input('Play again? Y/N: ')
+    if answer.lower() == 'y':
+        startGame()
+    else: 
+        print('Pfft. Fine. As if there are BETTER games than console tic-tac-toe...I see how it is...')    
 
-def winCondition(piece, board):
+
+def winCondition(piece, board, turn):
     if rowWin(piece, board):
         victoryCheer(piece)
+        playAgain()
         return True
     if diagonalWin(piece, board):
         victoryCheer(piece)
+        playAgain()
         return True
     if columnWin(piece, board):
         victoryCheer(piece)
+        playAgain()
         return True
+    if draw(turn):
+        print('DRAW')
+        playAgain()
     return False
 
 
@@ -119,17 +127,20 @@ def columnWin(piece, board):
         return True
     return False
 
+def draw(turn):
+    if turn == 9: 
+        return True
+    return False
 
 def singlePlayerGame(board):
-    print('single')
+    input('Single Player Selected!')
     turn = 0
 
     while turn < 9:
-        # playerO = '-o- '
+        playerO = '-o- '
         playerX = '-x- '
 
-        if (turn % 2) == 0:
-            print('Player Start ', turn)
+        if (turn % 2) == 0:    
             inputX = input('Player X, please select a position: ')
 
             if checkValidSpace(inputX) == True:
@@ -137,27 +148,26 @@ def singlePlayerGame(board):
                 coordinates = boardCoords(inputX)
                 if checkSpace(coordinates, newBoard, inputX):
                     continue
-                else:
+                else: 
                     turn = turn + 1
-                setPiece(coordinates, newBoard, turn)
-                print('Player Turn ', turn)
-            if winCondition(playerX, newBoard):
+                setPiece(coordinates, newBoard, turn)                
+            if winCondition(playerX, newBoard, turn):
                 break
 
         else:
+            
             print('Computer Start ', turn)
-            inputO = 3
-
-            if checkValidSpace(inputO) == True:
-                inputO = int(inputO) - 1
+            inputO = random.randint(0, 8)
+            if checkValidSpace(inputO) != True:  
+                inputO = random.randint(0, 8)              
+            else:
                 coordinates = boardCoords(inputO)
                 if checkSpace(coordinates, newBoard, inputO):
                     continue
-                else:
+                else: 
                     turn = turn + 1
-                setComputerPiece(coordinates, newBoard, turn)
-                print('Computer Turn', turn)
-            if winCondition(coordinates, newBoard):
+                setComputerPiece(coordinates, newBoard, turn)                
+            if winCondition(playerO, newBoard, turn):
                 break
 
 
@@ -182,7 +192,7 @@ def twoPlayerGame(board):
                 else:
                     turn = turn + 1
                 setPiece(coordinates, newBoard, turn)
-            if winCondition(playerX, newBoard):
+            if winCondition(playerX, newBoard, turn):
                 break
 
         else:
@@ -195,7 +205,7 @@ def twoPlayerGame(board):
                 else:
                     turn = turn + 1
                 setPiece(coordinates, newBoard, turn)
-            if winCondition(playerO, newBoard):
+            if winCondition(playerO, newBoard, turn):
                 break
 
 

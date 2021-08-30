@@ -24,7 +24,7 @@ printBoard(newBoard)
 def setPiece(coordinates, board, turn):   
     row = coordinates[0]
     column = coordinates[1]     
-    print(board[0][0])  
+      
     if (turn % 2) == 0: 
         board[row][column] = '-o- '
         printBoard(board)
@@ -58,10 +58,18 @@ def checkValidSpace(input):
         print(f"'{input}' is not a valid input. Please enter a numeric value of 1-9")  
         return False
 
+def victoryCheer(piece):
+    print('Player ' + f'{piece}' + 'wins!' )
+
+
 def winCondition(piece, board):
     if rowWin(piece, board): 
-        print('Player ' + f'{piece}' + 'wins!' )
+        victoryCheer(piece)
         return True
+    if diagonalWin(piece, board):
+        victoryCheer(piece)
+        return True
+        
     return False
 
 
@@ -77,6 +85,8 @@ def rowWin(piece, board):
 
 def diagonalWin(piece, board):
     print(board[0][0])
+    print(board[1][1])
+    print(board[2][2])
 
          
 

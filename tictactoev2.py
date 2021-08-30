@@ -23,7 +23,8 @@ printBoard(newBoard)
 #     printBoard(board)
 def setPiece(coordinates, board, turn):   
     row = coordinates[0]
-    column = coordinates[1]       
+    column = coordinates[1]     
+    print(board[0][0])  
     if (turn % 2) == 0: 
         board[row][column] = '-o- '
         printBoard(board)
@@ -64,8 +65,7 @@ def winCondition(piece, board):
     return False
 
 
-def rowWin(piece, board):  
-    print(piece)  
+def rowWin(piece, board):      
     for row in board:
         rowWin = True
         for pos in row:            
@@ -74,6 +74,10 @@ def rowWin(piece, board):
                 break
         if rowWin: return True
     return False
+
+def diagonalWin(piece, board):
+    print(board[0][0])
+
          
 
 def twoPlayerGame(board):
@@ -99,8 +103,7 @@ def twoPlayerGame(board):
               else:
                   turn = turn + 1
               setPiece(coordinates, newBoard, turn)
-           if winCondition(playerX, newBoard):
-              print('Win Condition')
+           if winCondition(playerX, newBoard):              
               break
                 
           

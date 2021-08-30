@@ -68,10 +68,11 @@ def winCondition(piece, board):
         return True
     if diagonalWin(piece, board):
         victoryCheer(piece)
-        return True
-        
+        return True 
+    if columnWin(piece, board):
+        victoryCheer(piece)
+        return True       
     return False
-
 
 def rowWin(piece, board):      
     for row in board:
@@ -86,9 +87,14 @@ def rowWin(piece, board):
 def diagonalWin(piece, board):
     if (board[0][0] == piece) and (board[1][1] == piece) and (board[2][2] == piece): 
         return True
-    if (board[2][2] == piece) and (board[1][1] == piece) and (board[0][2] == piece):
+    elif (board[2][2] == piece) and (board[1][1] == piece) and (board[0][2] == piece):
         return True
     return False
+
+def columnWin(piece, board): 
+    if (board[0][0] == piece) and (board[0][1] == piece) and (board[0][2]):
+        return True
+
 
          
 

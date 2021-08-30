@@ -84,10 +84,9 @@ def rowWin(piece, board):
     return False
 
 def diagonalWin(piece, board):
-    print(board[0][0])
-    print(board[1][1])
-    print(board[2][2])
-    if (board[0][0] == piece) and (board[1][1] == piece): 
+    if (board[0][0] == piece) and (board[1][1] == piece) and (board[2][2] == piece): 
+        return True
+    if (board[2][2] == piece) and (board[1][1] == piece) and (board[0][2] == piece):
         return True
     return False
 

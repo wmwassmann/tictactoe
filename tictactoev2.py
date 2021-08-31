@@ -15,6 +15,7 @@ def printBoard(board):
             print(pos, end='')
         print()
 
+
 printBoard(newBoard)
 
 
@@ -29,12 +30,12 @@ def setPiece(coordinates, board, turn):
         board[row][column] = '-x- '
         printBoard(board)
 
+
 def resetPiece(coordinates, board):
     row = coordinates[0]
-    column = coordinates[1]    
+    column = coordinates[1]
     board[row][column] = '--- '
-    printBoard(board)
-
+    
 
 
 def setComputerPiece(coordinates, board):
@@ -59,15 +60,15 @@ def compDialog(turn):
     if turn == 9:
         input('It seems you and I are at an impasse...')
         input('Care to play again?')
-    
 
 
-def boardCoords(input):    
+def boardCoords(input):
     row = int(input / 3)
     column = input
     if column > 2:
         column = int(column % 3)
     return(row, column)
+
 
 def checkSpace(coordinates, board, input):
     row = coordinates[0]
@@ -79,7 +80,8 @@ def checkSpace(coordinates, board, input):
         print('Please select a different position')
         return True
 
-def checkValidSpace(input): 
+
+def checkValidSpace(input):
     try:
         (int(input) in range(1, 9)) and int(input)
         return True
@@ -92,22 +94,21 @@ def victoryCheer(piece):
     print('Player ' + f'{piece}' + 'wins!')
 
 
-def playAgain(board, turn):     
-    # reset = 10
-    
+def playAgain(board):
     answer = input('Play again? Y/N: ')
-    for reset in range(0, 9): 
-        coordinates = boardCoords(reset)
-        print(coordinates)
+
+    for reset in range(0, 9):
+        coordinates = boardCoords(reset) 
         resetPiece(coordinates, board)
-  
-             
+    printBoard(board)
+
     while (answer.lower() != 'y') or (answer.lower() != 'n'):
-        if answer.lower() == 'y':        
+        if answer.lower() == 'y':
             startGame()
         elif answer.lower() == 'n':
-            print('Pfft. Fine. As if there are BETTER games than console tic-tac-toe...I see how it is...')    
-        else: 
+            print(
+                'Pfft. Fine. As if there are BETTER games than console tic-tac-toe...I see how it is...')
+        else:
             answer = input('Is that a no? Please confirm with, Y/N: ')
 
 
@@ -115,24 +116,24 @@ def winCondition(piece, board, turn):
     if rowWin(piece, board):
         if piece != 'Tom':
             victoryCheer(piece)
-            playAgain(board, turn)
+            playAgain(board)
             return True
-        else: 
+        else:
             input('Foolish fool! None can withstand my mastery of the row!')
-            playAgain(board, turn)
+            playAgain(board)
             return True
     if diagonalWin(piece, board):
         victoryCheer(piece)
-        playAgain(board, turn)
+        playAgain(board)
         return True
     if columnWin(piece, board):
         victoryCheer(piece)
-        playAgain(board, turn)
+        playAgain(board)
         return True
-    if draw(turn):      
-        print('DRAWWWWWWWWWW')  
+    if draw(turn):
+        print('DRAWWWWWWWWWW')
         turn += 1
-        playAgain(board, turn)
+        playAgain(board)
     return False
 
 
@@ -166,10 +167,12 @@ def columnWin(piece, board):
         return True
     return False
 
+
 def draw(turn):
-    if turn == 9: 
+    if turn == 9:
         return True
     return False
+
 
 def singlePlayerGame(board):
     input('Single Player Selected!')
@@ -178,37 +181,37 @@ def singlePlayerGame(board):
     printBoard(board)
     turn = 0
 
-    while turn < 9:  
+    while turn < 9:
         playerX = '-x- '
         playerComp = 'Tom'
 
-        if (turn % 2) == 0:    
+        if (turn % 2) == 0:
             inputX = input('Player X, please select an empty position 1-9: ')
-           
+
             if checkValidSpace(inputX) == True:
                 inputX = int(inputX) - 1
                 coordinates = boardCoords(inputX)
                 if checkSpace(coordinates, newBoard, inputX):
                     continue
-                else: 
+                else:
                     turn = turn + 1
-                setPiece(coordinates, newBoard, turn)  
-                compDialog(turn)       
+                setPiece(coordinates, newBoard, turn)
+                compDialog(turn)
             if winCondition(playerX, newBoard, turn):
                 break
 
-        else:           
-            
+        else:
+
             inputO = random.randint(0, 8)
-            if checkValidSpace(inputO) != True:  
-                inputO = random.randint(0, 8)              
+            if checkValidSpace(inputO) != True:
+                inputO = random.randint(0, 8)
             else:
                 coordinates = boardCoords(inputO)
                 if checkSpace(coordinates, newBoard, inputO):
                     continue
-                else: 
+                else:
                     turn = turn + 1
-                setComputerPiece(coordinates, newBoard)                
+                setComputerPiece(coordinates, newBoard)
             if winCondition(playerComp, newBoard, turn):
                 break
 
@@ -252,7 +255,7 @@ def twoPlayerGame(board):
 
 def startGame():
 
-    intro = input('Welcome to Tic Tac Toe! How many players: ')
+    intro = input('Welcome to Tic Tac Toe! How many players: ') 
     while (intro != '1') or (intro != '2'):
         if intro == '1':
             printBoard(newBoard)

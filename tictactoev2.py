@@ -1,73 +1,28 @@
 # Global startp variables
+
+
 import random
+import board
+import gameplay
+import dialogs
 
 
-newBoard = [
-    ['--- ', '--- ', '--- '],
-    ['--- ', '--- ', '--- '],
-    ['--- ', '--- ', '--- ']
-]
 
+# Board Functions
+newBoard = board.newBoard
+printBoard = board.printBoard
+boardCoords = board.boardCoords
 
-def printBoard(board):
-    for row in board:
-        for pos in row:
-            print(pos, end='')
-        print()
+# Gameplay Functions
 
+setPiece = gameplay.setPiece
+resetPiece = gameplay.resetPiece
+setComputerPiece = gameplay.setComputerPiece
 
-printBoard(newBoard)
+#Dialogs
 
-
-def setPiece(coordinates, board, turn):
-    row = coordinates[0]
-    column = coordinates[1]
-    if (turn % 2) == 0:
-        board[row][column] = '-o- '
-        printBoard(board)
-
-    else:
-        board[row][column] = '-x- '
-        printBoard(board)
-
-
-def resetPiece(coordinates, board):
-    row = coordinates[0]
-    column = coordinates[1]
-    board[row][column] = '--- '
-    
-
-
-def setComputerPiece(coordinates, board):
-    row = coordinates[0]
-    column = coordinates[1]
-    board[row][column] = '-o- '
-    printBoard(board)
-
-
-def compDialog(turn):
-    if turn == 1:
-        input('Tom the Tictactical Terror - Ahh, a decent start')
-        input('Tom the Tictactical Terror - I counter with...')
-    if turn == 3:
-        input('Tom the Tictactical Terror - Hmmm... I see what you are doing...')
-        input('Tom the Tictactical Terror - And I won\'t work!')
-    if turn == 5:
-        input('Tom the Tictactical Terror - Coming in for the win I see.')
-        input('Tom the Tictactical Terror - Well I still have a few tricks up my sleeve!')
-    if turn == 7:
-        input('I am still here! You haven\'t beaten me yet!')
-    if turn == 9:
-        input('It seems you and I are at an impasse...')
-        input('Care to play again?')
-
-
-def boardCoords(input):
-    row = int(input / 3)
-    column = input
-    if column > 2:
-        column = int(column % 3)
-    return(row, column)
+compDialog = dialogs.compDialog
+victoryCheer = dialogs.victoryCheer
 
 
 def checkSpace(coordinates, board, input):
@@ -89,11 +44,6 @@ def checkValidSpace(input):
         print(f"'{input}' is not a valid input. Please enter a numeric value of 1-9")
         return False
 
-
-def victoryCheer(piece):
-    print('Player ' + f'{piece}' + 'wins!')
-
-
 def playAgain(board):
     answer = input('Play again? Y/N: ')
 
@@ -110,6 +60,7 @@ def playAgain(board):
                 'Pfft. Fine. As if there are BETTER games than console tic-tac-toe...I see how it is...')
         else:
             answer = input('Is that a no? Please confirm with, Y/N: ')
+
 
 
 def winCondition(piece, board, turn):
@@ -172,6 +123,7 @@ def draw(turn):
     if turn == 9:
         return True
     return False
+
 
 
 def singlePlayerGame(board):

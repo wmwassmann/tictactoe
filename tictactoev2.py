@@ -1,12 +1,9 @@
-# Global startp variables
-
+# Global startup variables
 
 import random
 import board
 import gameplay
 import dialogs
-
-
 
 # Board Functions
 newBoard = board.newBoard
@@ -23,6 +20,8 @@ setComputerPiece = gameplay.setComputerPiece
 
 compDialog = dialogs.compDialog
 victoryCheer = dialogs.victoryCheer
+
+
 
 
 def checkSpace(coordinates, board, input):
@@ -45,7 +44,7 @@ def checkValidSpace(input):
         return False
 
 def checkSelection(inputCheck):
-    checkSelection = input('Confirm square ' + f'"{inputCheck}" ' + '(Y/N) '  )
+    checkSelection = input('Confirm square ' + f'"{inputCheck + 1}" ' + '(Y/N) '  )
     if checkSelection.lower() == 'y':
         return True
     else:
@@ -148,9 +147,9 @@ def singlePlayerGame(board):
 
         if (turn % 2) == 0:
             inputX = input('Player X, please select an empty position 1-9: ')
+            inputX = int(inputX) - 1
             if checkSelection(inputX):
                 if checkValidSpace(inputX) == True:
-                    inputX = int(inputX) - 1
                     coordinates = boardCoords(inputX)
                     if checkSpace(coordinates, newBoard, inputX):
                         continue

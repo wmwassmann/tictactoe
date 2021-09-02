@@ -38,11 +38,20 @@ def checkSpace(coordinates, board, input):
 
 def checkValidSpace(input):
     try:
-        (int(input) in range(1, 9)) and int(input)
+        (int(input) in range(1, 9)) and int(input)        
         return True
     except:
         print(f"'{input}' is not a valid input. Please enter a numeric value of 1-9")
         return False
+
+def checkSelection(inputCheck):
+    checkSelection = input('Confirm square ' + f'"{inputCheck}" ' + '(Y/N) '  )
+    if checkSelection.lower() == 'y':
+        return True
+    else:
+        return False
+    
+        
 
 def playAgain(board):
     answer = input('Play again? Y/N: ')
@@ -139,18 +148,18 @@ def singlePlayerGame(board):
 
         if (turn % 2) == 0:
             inputX = input('Player X, please select an empty position 1-9: ')
-
-            if checkValidSpace(inputX) == True:
-                inputX = int(inputX) - 1
-                coordinates = boardCoords(inputX)
-                if checkSpace(coordinates, newBoard, inputX):
-                    continue
-                else:
-                    turn = turn + 1
-                setPiece(coordinates, newBoard, turn)
-                compDialog(turn)
-            if winCondition(playerX, newBoard, turn):
-                break
+            if checkSelection(inputX):
+                if checkValidSpace(inputX) == True:
+                    inputX = int(inputX) - 1
+                    coordinates = boardCoords(inputX)
+                    if checkSpace(coordinates, newBoard, inputX):
+                        continue
+                    else:
+                        turn = turn + 1
+                    setPiece(coordinates, newBoard, turn)
+                    compDialog(turn)
+                if winCondition(playerX, newBoard, turn):
+                    break
 
         else:
 
@@ -179,30 +188,31 @@ def twoPlayerGame(board):
 
         if (turn % 2) == 0:
             inputX = input('Player X, please select an empty position 1-9: ')
-            inputX = int(inputX) - 1
-            checkValidSpace(inputX)
-            if checkValidSpace(inputX):
-                coordinates = boardCoords(inputX)
-                if checkSpace(coordinates, newBoard, inputX):
-                    continue
-                else:
-                    turn = turn + 1
-                setPiece(coordinates, newBoard, turn)
-            if winCondition(playerX, newBoard, turn):
-                break
+            inputX = int(inputX) - 1 
+            if checkSelection(inputX):
+                if checkValidSpace(inputX):
+                    coordinates = boardCoords(inputX)
+                    if checkSpace(coordinates, newBoard, inputX):
+                        continue
+                    else:
+                        turn = turn + 1
+                    setPiece(coordinates, newBoard, turn)
+                if winCondition(playerX, newBoard, turn):
+                    break
 
         else:
             inputO = input('Player O, please select an empty position 1-9: ')
             inputO = int(inputO) - 1
-            if checkValidSpace(inputO) == True:
-                coordinates = boardCoords(inputO)
-                if checkSpace(coordinates, newBoard, inputO):
-                    continue
-                else:
-                    turn = turn + 1
-                setPiece(coordinates, newBoard, turn)
-            if winCondition(playerO, newBoard, turn):
-                break
+            if checkSelection(inputO):
+                if checkValidSpace(inputO) == True:
+                    coordinates = boardCoords(inputO)
+                    if checkSpace(coordinates, newBoard, inputO):
+                        continue
+                    else:
+                        turn = turn + 1
+                    setPiece(coordinates, newBoard, turn)
+                if winCondition(playerO, newBoard, turn):
+                    break
 
 
 def startGame():
